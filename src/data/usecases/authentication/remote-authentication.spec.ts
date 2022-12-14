@@ -1,5 +1,5 @@
 import { HttpPostClient } from '@/data/protocols/http/http-post-client'
-import { RemoteAuthentication } from './romote-authentication'
+import { RemoteAuthentication } from './remote-authentication'
 
 class HttpClientPostSpy implements HttpPostClient {
   url?: string

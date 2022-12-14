@@ -4,7 +4,10 @@
   "description": "learning clean react",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test -- --watch",
+    "test:ci": "yarn test -- --findRelatedTests",
+    "test:staged": "yarn test -- --coverage"
   },
   "author": "",
   "license": "ISC",

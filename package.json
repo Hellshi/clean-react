@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "test:watch": "yarn test -- --watch",
-    "test:ci": "yarn test -- --findRelatedTests",
-    "test:staged": "yarn test -- --coverage",
+    "test:watch": "npm test -- --watch",
+    "test:ci": "npm test -- --findRelatedTests",
+    "test:staged": "npm test -- --coverage",
     "prepare": "husky install"
   },
   "author": "",

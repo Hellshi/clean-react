@@ -1,11 +1,10 @@
-import { HttpClientPostSpy } from '../../protocols/test/http-post-client.spy'
+import { HttpClientPostSpy } from '../../protocols/test'
 import faker from 'faker'
 import { RemoteAuthentication } from './remote-authentication'
-import { mockAccountModel, mockAuthentication } from '../../../domain/test/mock-authentication'
-import { InvalidCredentialsError } from '@/domain/error/invalid-credentials-error'
-import { HttpStatusCode } from '@/data/protocols/http/http-responses'
-import { UnexpectedError } from '@/domain/error/unexpected-error'
-import { AuthenticationParams } from '@/domain/usecases/authentication'
+import { mockAccountModel, mockAuthentication } from '../../../domain/test'
+import { InvalidCredentialsError, UnexpectedError } from '@/domain/error'
+import { HttpStatusCode } from '@/data/protocols/http'
+import { AuthenticationParams } from '@/domain/usecases'
 import { AccountModel } from '@/domain/models/account-model'
 
 interface sutReturn {

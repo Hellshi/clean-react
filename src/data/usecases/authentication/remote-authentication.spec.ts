@@ -1,17 +1,10 @@
-import { HttpPostClient } from '@/data/protocols/http/http-post-client'
+import { HttpClientPostSpy } from '../../protocols/test/http-post-client.spy'
 import faker from 'faker'
 import { RemoteAuthentication } from './remote-authentication'
 
 interface sutReturn {
   sut: RemoteAuthentication
   httpClientPostSpy: HttpClientPostSpy
-}
-
-class HttpClientPostSpy implements HttpPostClient {
-  url?: string
-  async post (url: string): Promise<void> {
-    this.url = url
-  }
 }
 
 describe('Remote Authentication', () => {

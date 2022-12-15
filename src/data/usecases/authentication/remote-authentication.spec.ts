@@ -4,6 +4,7 @@ import { RemoteAuthentication } from './remote-authentication'
 import { mockAuthentication } from '../../../domain/test/mock-authentication'
 import { InvalidCredentialsError } from '@/domain/error/invalid-credentials-error'
 import { HttpStatusCode } from '@/data/protocols/http/http-responses'
+import { UnexpectedError } from '@/domain/error/unexpected-error'
 
 interface sutReturn {
   sut: RemoteAuthentication
@@ -41,6 +42,45 @@ describe('Remote Authentication', () => {
       await sut.auth(body)
     } catch (e) {
       expect(e).toBeInstanceOf(InvalidCredentialsError)
+    }
+  })
+
+  test('Should throw UnexpectedError if httpPostClient returns 400', async () => {
+    const { httpClientPostSpy, sut } = makeSut()
+    try {
+      httpClientPostSpy.response = {
+        statusCode: HttpStatusCode.badRequest
+      }
+      const body = mockAuthentication()
+      await sut.auth(body)
+    } catch (e) {
+      expect(e).toBeInstanceOf(UnexpectedError)
+    }
+  })
+  // Hell's note: This does not seems like good practice to me
+  test('Should throw UnexpectedError if httpPostClient returns 404', async () => {
+    const { httpClientPostSpy, sut } = makeSut()
+    try {
+      httpClientPostSpy.response = {
+        statusCode: HttpStatusCode.notFound
+      }
+      const body = mockAuthentication()
+      await sut.auth(body)
+    } catch (e) {
+      expect(e).toBeInstanceOf(UnexpectedError)
+    }
+  })
+
+  test('Should throw UnexpectedError if httpPostClient returns 500', async () => {
+    const { httpClientPostSpy, sut } = makeSut()
+    try {
+      httpClientPostSpy.response = {
+        statusCode: HttpStatusCode.serverError
+      }
+      const body = mockAuthentication()
+      await sut.auth(body)
+    } catch (e) {
+      expect(e).toBeInstanceOf(UnexpectedError)
     }
   })
 })
